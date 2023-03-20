@@ -34,7 +34,7 @@ const Home = () => {
       if (response.ok) {
         console.log("Successful login");
         const data = await response.json();
-        router.push("/activities", { data: data });
+        router.push("/addemp", { data: data });
       } else {
         console.log("no successful login");
       }
