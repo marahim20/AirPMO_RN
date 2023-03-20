@@ -15,7 +15,7 @@ const Image = require("../assets/icon.png");
 const activities = () => {
   const data = useSearchParams();
   console.log("data", data);
-  const token = data.access_token;
+  const token = data.token;
   const organization_id = data.organization_id;
   const user_id = data.user_id;
   console.log("token", token);
@@ -59,6 +59,48 @@ const activities = () => {
       return null;
     }
   }
+
+  const MyProjects = getProjects(token, organization_id);
+
+  const project_id = "J725";
+
+  async function getTasks(token, project_id, organization_id) {
+    try {
+      var tasksJson;
+      var aTask;
+      let listOfTasks = [];
+      let url =
+        "http://app.airpmo.co:8000/api/organization/" +
+        organization_id +
+        "/project";
+      let headers = {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+      };
+      let response = await axios.get(url, { headers });
+      console.log("Response:", response.data);
+      if (response.status === 200) {
+        console.log("successfully obtained tasks....");
+        tasksJson = response.data;
+        for (aTask in tasksJson)
+          if (aTask.project_id == project_id)
+            listOfTasks.push(MyTask.fromJson(aTask));
+        let len = listOfTasks.length;
+        console.log("number of tasks = ", len);
+        return listOfTasks;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log("Error:", error);
+      return null;
+    }
+  }
+
+  const MyTasks = getTasks(token, project_id, organization_id);
+  console.log("MyTasks", MyTasks);
+
   const Tasks = [
     {
       id: 1,

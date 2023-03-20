@@ -45,7 +45,13 @@ const Home = () => {
           hideOnPress: true,
           delay: 0,
         });
-        router.push({ pathname: "/activities", params: data });
+        const organization_id = data.user.organization_id;
+        const user_id = data.user._id;
+        const token = data.access_token;
+        router.push({
+          pathname: "/activities",
+          params: { organization_id, token, user_id },
+        });
       } else {
         console.log("no successful login");
         Toast.show("Login Failed", {
