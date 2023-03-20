@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Stack, useRouter } from "expo-router";
+import { Link, Stack, useRouter } from "expo-router";
+import Toast from "react-native-root-toast";
 
 const Image = require("../assets/th.jpeg");
 
@@ -10,6 +11,7 @@ import {
   TextInput,
   TouchableOpacity,
   Text,
+  ToastAndroid,
 } from "react-native";
 
 const Home = () => {
@@ -30,16 +32,41 @@ const Home = () => {
           Password: password,
         }),
       });
-      console.log(response);
+      // console.log(response);
       if (response.ok) {
         console.log("Successful login");
         const data = await response.json();
-        router.push("/addemp", { data: data });
+        console.log(data);
+        Toast.show("Login Successful", {
+          duration: Toast.durations.SHORT,
+          position: Toast.positions.BOTTOM,
+          shadow: true,
+          animation: true,
+          hideOnPress: true,
+          delay: 0,
+        });
+        router.push({ pathname: "/activities", params: data });
       } else {
         console.log("no successful login");
+        Toast.show("Login Failed", {
+          duration: Toast.durations.SHORT,
+          position: Toast.positions.BOTTOM,
+          shadow: true,
+          animation: true,
+          hideOnPress: true,
+          delay: 0,
+        });
       }
     } catch (error) {
       console.error(error);
+      Toast.show("Login Failed", {
+        duration: Toast.durations.SHORT,
+        position: Toast.positions.BOTTOM,
+        shadow: true,
+        animation: true,
+        hideOnPress: true,
+        delay: 0,
+      });
       // TODO: handle failed login
     }
   };
