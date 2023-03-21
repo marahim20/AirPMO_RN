@@ -9,18 +9,31 @@ import React, { Component } from "react";
 import { Stack, useSearchParams } from "expo-router";
 import { Icon } from "@rneui/themed";
 import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Image = require("../assets/icon.png");
-
+const retrieveData = async () => {
+  try {
+    const value = await AsyncStorage.getItem('data');
+    if (value !== null) {
+      console.log('Retrieved data:', JSON.parse(value));
+      const data = JSON.parse(value);
+      const token = data.access_token;
+      const organization_id = data.user.organization_id;
+      const user_id = data.user._id;
+      console.log("token", token);
+      console.log("organization_id", organization_id);
+      console.log("user_id", user_id);
+    }
+  }
+  catch (error) {
+    console.log("Error:", error);
+    return null;
+  }
+}
 const activities = () => {
-  const data = useSearchParams();
-  console.log("data", data);
-  const token = data.token;
-  const organization_id = data.organization_id;
-  const user_id = data.user_id;
-  console.log("token", token);
-  console.log("organization_id", organization_id);
-  console.log("user_id", user_id);
+  
   async function getProjects(token, organization_id) {
     try {
       var projectsJson;
@@ -199,4 +212,4 @@ const activities = () => {
   );
 };
 
-export default activities;
+export default retrieveData;
