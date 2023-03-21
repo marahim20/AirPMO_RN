@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, Stack, useRouter } from "expo-router";
 import Toast from "react-native-root-toast";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Image = require("../assets/th.jpeg");
 
@@ -36,7 +38,8 @@ const Home = () => {
       if (response.ok) {
         console.log("Successful login");
         const data = await response.json();
-        console.log(data);
+        await AsyncStorage.setItem('data', JSON.stringify(data));
+        //console.log(data);
         Toast.show("Login Successful", {
           duration: Toast.durations.SHORT,
           position: Toast.positions.BOTTOM,
@@ -45,7 +48,7 @@ const Home = () => {
           hideOnPress: true,
           delay: 0,
         });
-        router.push({ pathname: "/activities", params: data });
+        router.push("/activities");
       } else {
         console.log("no successful login");
         Toast.show("Login Failed", {
