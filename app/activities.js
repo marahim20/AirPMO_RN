@@ -40,7 +40,7 @@ const activities = () => {
 
       let response = await axios.get(url, { headers });
 
-      console.log("Response:", response.data);
+      // console.log("Response:", response.data);
 
       if (response.status === 200) {
         console.log("successfully obtained projects....");
@@ -75,8 +75,8 @@ const activities = () => {
         "/project";
       let headers = {
         "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
+        "Accept": "application/json",
+        "Authorization": "Bearer " + token,
       };
       let response = await axios.get(url, { headers });
       console.log("Response:", response.data);
