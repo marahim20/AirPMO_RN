@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, Stack, useRouter } from "expo-router";
 import Toast from "react-native-root-toast";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Image = require("../assets/th.jpeg");
+import { useEffect } from "react";
 
 import {
   StyleSheet,
@@ -15,95 +15,59 @@ import {
   Text,
   ToastAndroid,
 } from "react-native";
+import { SafeAreaView } from "react-native-web";
 
 const Home = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  const handleLogin = async () => {
-    try {
-      const response = await fetch("http://api.airpmo.co:8000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          Email: username,
-          domain_name: "app.airpmo.co",
-          Password: password,
-        }),
+  useEffect(() => {
+    fetch("http://api.airpmo.co:8000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        Email: username,
+        domain_name: "app.airpmo.co",
+        Password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        if (json.access_token) {
+          console.log("Successful login");
+          // const data = await response.json();
+          AsyncStorage.setItem("data", JSON.stringify(json));
+          // ToastAndroid.show("Login Successful", ToastAndroid.SHORT);
+          console.log(AsyncStorage.getItem("data"));
+          router.push("/activities");
+        } else {
+          console.log("no successful login");
+          // ToastAndroid.show("Login Failed", ToastAndroid.SHORT);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        // ToastAndroid.show("Login Failed", ToastAndroid.SHORT);
       });
-      // console.log(response);
-      if (response.ok) {
-        console.log("Successful login");
-        const data = await response.json();
-        await AsyncStorage.setItem('data', JSON.stringify(data));
-        //console.log(data);
-        Toast.show("Login Successful", {
-          duration: Toast.durations.SHORT,
-          position: Toast.positions.BOTTOM,
-          shadow: true,
-          animation: true,
-          hideOnPress: true,
-          delay: 0,
-        });
-        const organization_id = data.user.organization_id;
-        const user_id = data.user._id;
-        const token = data.access_token;
-        router.push({
-          pathname: "/activities",
-          params: { organization_id, token, user_id },
-        });
-      } else {
-        console.log("no successful login");
-        Toast.show("Login Failed", {
-          duration: Toast.durations.SHORT,
-          position: Toast.positions.BOTTOM,
-          shadow: true,
-          animation: true,
-          hideOnPress: true,
-          delay: 0,
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      Toast.show("Login Failed", {
-        duration: Toast.durations.SHORT,
-        position: Toast.positions.BOTTOM,
-        shadow: true,
-        animation: true,
-        hideOnPress: true,
-        delay: 0,
-      });
-      // TODO: handle failed login
-    }
-  };
+  }, [password, username]);
 
   return (
-    <ImageBackground source={Image} style={styles.backgroundImage}>
-      <View style={styles.overlay}>
-        <View style={styles.container}>
-          <Text style={styles.heading}>airpmo</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Username"
-            onChangeText={(text) => setUsername(text)}
-            value={username}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            secureTextEntry={true}
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-          />
-          <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </ImageBackground>
+    // <ImageBackground source={Image} style={styles.backgroundImage}>
+    //   <View style={styles.overlay}>
+    //     <View style={styles.container}>
+    //       <Text style={styles.heading}>airpmo</Text>
+           
+    //       <TouchableOpacity style={styles.button}>
+    //         <Text style={styles.buttonText}>Login</Text>
+    //       </TouchableOpacity>
+    //     </View>
+    //   </View>
+    // </ImageBackground>
+    <SafeAreaView style={{flex: 1, }}
   );
 };
 

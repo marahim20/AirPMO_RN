@@ -5,35 +5,47 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { Stack, useSearchParams } from "expo-router";
 import { Icon } from "@rneui/themed";
 import axios from "axios";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Image = require("../assets/icon.png");
-const retrieveData = async () => {
-  try {
-    const value = await AsyncStorage.getItem('data');
-    if (value !== null) {
-      console.log('Retrieved data:', JSON.parse(value));
-      const data = JSON.parse(value);
-      const token = data.access_token;
-      const organization_id = data.user.organization_id;
-      const user_id = data.user._id;
-      console.log("token", token);
-      console.log("organization_id", organization_id);
-      console.log("user_id", user_id);
-    }
-  }
-  catch (error) {
-    console.log("Error:", error);
-    return null;
-  }
-}
 const activities = () => {
-  
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const [token, setToken] = useState("");
+  const [organization_id, setOrganization_id] = useState("");
+  const [user_id, setUser_id] = useState("");
+  const [project_id, setProject_id] = useState("");
+
+  const retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("data");
+      if (value !== null) {
+        // console.log('Retrieved data:', JSON.parse(value));
+        const data = JSON.parse(value);
+        const token = data.access_token;
+        const organization_id = data.user.organization_id;
+        const user_id = data.user._id;
+        // console.log("token", token);
+        // console.log("organization_id", organization_id);
+        // console.log("user_id", user_id);
+        const info = {
+          token: token,
+          organization_id: organization_id,
+          user_id: user_id,
+        };
+        return info;
+      }
+    } catch (error) {
+      console.log("Error:", error);
+      return null;
+    }
+  };
+  let info = retrieveData();
+  console.log("info", info);
   async function getProjects(token, organization_id) {
     try {
       var projectsJson;
@@ -74,8 +86,8 @@ const activities = () => {
   }
 
   const MyProjects = getProjects(token, organization_id);
-
-  const project_id = "J725";
+  console.log(MyProjects);
+  // const project_id = "J725";
 
   async function getTasks(token, project_id, organization_id) {
     try {
@@ -111,7 +123,7 @@ const activities = () => {
     }
   }
 
-  const MyTasks = getTasks(token, project_id, organization_id);
+  // const MyTasks = getTasks(token, project_id, organization_id);
   console.log("MyTasks", MyTasks);
 
   const Tasks = [
@@ -212,4 +224,4 @@ const activities = () => {
   );
 };
 
-export default retrieveData;
+export default activities;
