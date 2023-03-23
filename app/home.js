@@ -56,18 +56,18 @@ const Home = () => {
   }, [password, username]);
 
   return (
+    <></>
     // <ImageBackground source={Image} style={styles.backgroundImage}>
     //   <View style={styles.overlay}>
     //     <View style={styles.container}>
     //       <Text style={styles.heading}>airpmo</Text>
-           
+
     //       <TouchableOpacity style={styles.button}>
     //         <Text style={styles.buttonText}>Login</Text>
     //       </TouchableOpacity>
     //     </View>
     //   </View>
     // </ImageBackground>
-    <SafeAreaView style={{flex: 1, }}
   );
 };
 
