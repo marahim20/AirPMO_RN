@@ -9,9 +9,10 @@ import { useState } from "react";
 import React, { Component, useEffect } from "react";
 import { Stack, useSearchParams } from "expo-router";
 import { Icon } from "@rneui/themed";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import retrieveData from "../libs/retrieveData.js";
+import getProjects from "../libs/getProjects.js";
+import getTasks from "../libs/getTasks.js";
+import getJobCard from "../libs/getJobCard.js";
 
 const activities = () => {
   // const [isLoading, setLoading] = useState(true);
@@ -21,49 +22,26 @@ const activities = () => {
   const [user_id, setUser_id] = useState("");
   const [project_id, setProject_id] = useState("");
 
-  let info = retrieveData();
-  console.log("info: ", info);
+  let info;
+  let projects;
+  let tasks;
+  let jobCard;
+  useEffect(() => {
+    async function fetcher() {
+      info = await retrieveData();
+      projects = await getProjects();
+      tasks = await getTasks();
+      jobCard = await getJobCard();
+      console.log("info: ", info);
+      console.log("projects: ", projects);
+      console.log("tasks: ", tasks);
+      console.log("jobCard: ", jobCard);
+    }
+    fetcher();
+  }, []);
 
-  // const MyProjects = getProjects(token, organization_id);
-  // console.log(MyProjects);
-  // // const project_id = "J725";
-
-  // async function getTasks(token, project_id, organization_id) {
-  //   try {
-  //     var tasksJson;
-  //     var aTask;
-  //     let listOfTasks = [];
-  //     let url =
-  //       "http://app.airpmo.co:8000/api/organization/" +
-  //       organization_id +
-  //       "/project";
-  //     let headers = {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //       Authorization: "Bearer " + token,
-  //     };
-  //     let response = await axios.get(url, { headers });
-  //     console.log("Response:", response.data);
-  //     if (response.status === 200) {
-  //       console.log("successfully obtained tasks....");
-  //       tasksJson = response.data;
-  //       for (aTask in tasksJson)
-  //         if (aTask.project_id == project_id)
-  //           listOfTasks.push(MyTask.fromJson(aTask));
-  //       let len = listOfTasks.length;
-  //       console.log("number of tasks = ", len);
-  //       return listOfTasks;
-  //     } else {
-  //       return null;
-  //     }
-  //   } catch (error) {
-  //     console.log("Error:", error);
-  //     return null;
-  //   }
-  // }
-
-  // const MyTasks = getTasks(token, project_id, organization_id);
-  // console.log("MyTasks", MyTasks);
+  // let tasks = getTasks(token, project_id, organization_id);
+  // console.log("tasks: ", tasks);
 
   const Tasks = [
     {
@@ -139,7 +117,7 @@ const activities = () => {
           {/* TODO: Add name of activity here */}
         </Text>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} style={{ gap: 10 }}>
+      {/* <ScrollView showsVerticalScrollIndicator={false} style={{ gap: 10 }}>
         {Tasks.map((task) => (
           <View
             style={{
@@ -158,7 +136,7 @@ const activities = () => {
             </Text>
           </View>
         ))}
-      </ScrollView>
+      </ScrollView> */}
     </SafeAreaView>
   );
 };

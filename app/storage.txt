@@ -176,7 +176,43 @@ const styles = StyleSheet.create({
 
 export default Home;
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+async function getProjects(token, organization_id) {
+    try {
+      var projectsJson;
+      var aProject;
+      let listOfProjects = [];
 
+      console.log("getting list of projects..." + organization_id);
+      let url =
+        "http://app.airpmo.co:8000/api/organization/" +
+        organization_id +
+        "/project";
+      let headers = {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+      };
 
- 
+      let response = await axios.get(url, { headers });
+
+      // console.log("Response:", response.data);
+
+      if (response.status === 200) {
+        console.log("successfully obtained projects....");
+        projectsJson = response.data;
+        for (aProject in projectsJson) {
+          listOfProjects.push(MyProject.fromJson(aProject));
+        }
+        let len = listOfProjects.length;
+        console.log("number of projects = ", len);
+        return listOfProjects;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log("Error:", error);
+      return null;
+    }
+  }
