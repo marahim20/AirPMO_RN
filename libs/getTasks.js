@@ -9,12 +9,14 @@ const getTasks = async () => {
       const data = JSON.parse(value);
       const token = data.access_token;
       const organization_id = data.user.organization_id;
-      const project_id = "J725";
+      const project_id = "628e554cd49157759a5e0e35";
+      const _id = data.user._id;
       console.log("getting list of tasks..." + project_id);
       let url =
-        "http://app.airpmo.co:8000/api/organization/" +
-        organization_id +
-        "/project";
+        "http://app.airpmo.co:8000/api/find_all_assign_card_by_user/" +
+        _id +
+        "/" +
+        project_id;
       let headers = {
         "Content-Type": "application/json",
         Accept: "application/json",

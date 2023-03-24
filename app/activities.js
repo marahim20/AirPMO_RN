@@ -69,6 +69,68 @@ const activities = () => {
       name: "CD2-1014",
       description: "CONCRETE PROTECTIONS",
     },
+
+    {
+      id: 6,
+      name: "CD2-1015",
+      description: "BACK FILLING & GRADING",
+    },
+
+    {
+      id: 7,
+      name: "CD2-1016",
+      description: "PCC WORK",
+    },
+
+    {
+      id: 8,
+      name: "CD2-1017",
+      description: "	FORM WORK FOR FOOTING",
+    },
+
+    {
+      id: 9,
+      name: "CD2-1018",
+      description: "REBAR FIXING FOR FOOTING",
+    },
+
+    {
+      id: 10,
+      name: "CD2-1019",
+      description: "CASTING OF FOOTING",
+    },
+
+    {
+      id: 11,
+      name: "CD2-1020",
+      description: "REBAR FIXING OF PEDESTAL",
+    },
+    {
+      id: 12,
+      name: "CD2-1021",
+      description: "FORM WORK FOR PEDESTAL",
+    },
+    {
+      id: 13,
+      name: "CD2-1022",
+      description: "	CASTING OF PEDESTAL",
+    },
+
+    {
+      id: 14,
+      name: "CD2-1023",
+      description: "WATER PROOFING",
+    },
+    {
+      id: 15,
+      name: "CD2-1024",
+      description: "BACKFILLING",
+    },
+    {
+      id: 16,
+      name: "CD2-1025",
+      description: "EXCAVATION",
+    },
   ];
 
   return (
@@ -117,26 +179,28 @@ const activities = () => {
           {/* TODO: Add name of activity here */}
         </Text>
       </View>
-      {/* <ScrollView showsVerticalScrollIndicator={false} style={{ gap: 10 }}>
-        {Tasks.map((task) => (
-          <View
-            style={{
-              padding: 20,
-              display: "flex",
-              backgroundColor: "#f2f2f2",
-              borderRadius: 10,
-              margin: 20,
-              flexDirection: "row",
-              gap: 10,
-            }}
-          >
-            <Text style={{ fontSize: 15, fontWeight: 500 }}>{task.name}</Text>
-            <Text style={{ fontSize: 15, fontWeight: 500 }}>
-              {task.description}
-            </Text>
-          </View>
-        ))}
-      </ScrollView> */}
+      {
+        <ScrollView showsVerticalScrollIndicator={false} style={{ gap: 10 }}>
+          {Tasks.map((task) => (
+            <View
+              style={{
+                padding: 20,
+                display: "flex",
+                backgroundColor: "#f2f2f2",
+                borderRadius: 10,
+                margin: 20,
+                flexDirection: "row",
+                gap: 10,
+              }}
+            >
+              <Text style={{ fontSize: 15, fontWeight: 500 }}>{task.name}</Text>
+              <Text style={{ fontSize: 15, fontWeight: 500 }}>
+                {task.description}
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
+      }
     </SafeAreaView>
   );
 };
