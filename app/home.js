@@ -21,53 +21,62 @@ const Home = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  useEffect(() => {
-    fetch("http://api.airpmo.co:8000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        Email: username,
-        domain_name: "app.airpmo.co",
-        Password: password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        if (json.access_token) {
-          console.log("Successful login");
-          // const data = await response.json();
-          AsyncStorage.setItem("data", JSON.stringify(json));
-          // ToastAndroid.show("Login Successful", ToastAndroid.SHORT);
-          console.log(AsyncStorage.getItem("data"));
-          router.push("/activities");
-        } else {
-          console.log("no successful login");
-          // ToastAndroid.show("Login Failed", ToastAndroid.SHORT);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        // ToastAndroid.show("Login Failed", ToastAndroid.SHORT);
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://api.airpmo.co:8000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          Email: username,
+          domain_name: "app.airpmo.co",
+          Password: password,
+        }),
       });
-  }, [password, username]);
+      const json = await response.json();
+      console.log(json);
+      if (json.access_token) {
+        console.log("Successful login");
+        await AsyncStorage.setItem("data", JSON.stringify(json));
+        console.log(await AsyncStorage.getItem("data"));
+        router.push("/activities");
+      } else {
+        console.log("no successful login");
+        ToastAndroid.show("Login Failed", ToastAndroid.SHORT);
+      }
+    } catch (error) {
+      console.error(error);
+      ToastAndroid.show("Login Failed", ToastAndroid.SHORT);
+    }
+  };
 
   return (
-    <></>
-    // <ImageBackground source={Image} style={styles.backgroundImage}>
-    //   <View style={styles.overlay}>
-    //     <View style={styles.container}>
-    //       <Text style={styles.heading}>airpmo</Text>
-
-    //       <TouchableOpacity style={styles.button}>
-    //         <Text style={styles.buttonText}>Login</Text>
-    //       </TouchableOpacity>
-    //     </View>
-    //   </View>
-    // </ImageBackground>
+    <ImageBackground source={Image} style={styles.backgroundImage}>
+      <View style={styles.overlay}>
+        <View style={styles.container}>
+          <Text style={styles.heading}>airpmo</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Username"
+            onChangeText={(text) => setUsername(text)}
+            value={username}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            onChangeText={(text) => setPassword(text)}
+            value={password}
+            secureTextEntry={true}
+          />
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ImageBackground>
   );
 };
 
