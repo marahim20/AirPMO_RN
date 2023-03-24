@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, Stack, useRouter } from "expo-router";
 import Toast from "react-native-root-toast";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Image = require("../assets/th.jpeg");
+import { useEffect } from "react";
 
 import {
   StyleSheet,
@@ -15,11 +15,13 @@ import {
   Text,
   ToastAndroid,
 } from "react-native";
+import { SafeAreaView } from "react-native-web";
 
 const Home = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+
   const handleLogin = async () => {
     try {
       const response = await fetch("http://api.airpmo.co:8000/api/login", {
@@ -34,49 +36,20 @@ const Home = () => {
           Password: password,
         }),
       });
-      // console.log(response);
-      if (response.ok) {
+      const json = await response.json();
+      console.log(json);
+      if (json.access_token) {
         console.log("Successful login");
-        const data = await response.json();
-        await AsyncStorage.setItem('data', JSON.stringify(data));
-        //console.log(data);
-        Toast.show("Login Successful", {
-          duration: Toast.durations.SHORT,
-          position: Toast.positions.BOTTOM,
-          shadow: true,
-          animation: true,
-          hideOnPress: true,
-          delay: 0,
-        });
-        const organization_id = data.user.organization_id;
-        const user_id = data.user._id;
-        const token = data.access_token;
-        router.push({
-          pathname: "/activities",
-          params: { organization_id, token, user_id },
-        });
+        await AsyncStorage.setItem("data", JSON.stringify(json));
+        console.log(await AsyncStorage.getItem("data"));
+        router.push("/activities");
       } else {
         console.log("no successful login");
-        Toast.show("Login Failed", {
-          duration: Toast.durations.SHORT,
-          position: Toast.positions.BOTTOM,
-          shadow: true,
-          animation: true,
-          hideOnPress: true,
-          delay: 0,
-        });
+        ToastAndroid.show("Login Failed", ToastAndroid.SHORT);
       }
     } catch (error) {
       console.error(error);
-      Toast.show("Login Failed", {
-        duration: Toast.durations.SHORT,
-        position: Toast.positions.BOTTOM,
-        shadow: true,
-        animation: true,
-        hideOnPress: true,
-        delay: 0,
-      });
-      // TODO: handle failed login
+      ToastAndroid.show("Login Failed", ToastAndroid.SHORT);
     }
   };
 
@@ -94,9 +67,9 @@ const Home = () => {
           <TextInput
             style={styles.input}
             placeholder="Password"
-            secureTextEntry={true}
             onChangeText={(text) => setPassword(text)}
             value={password}
+            secureTextEntry={true}
           />
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
             <Text style={styles.buttonText}>Login</Text>
