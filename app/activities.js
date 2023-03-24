@@ -11,121 +11,59 @@ import { Stack, useSearchParams } from "expo-router";
 import { Icon } from "@rneui/themed";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import retrieveData from "../libs/retrieveData.js";
 
-const Image = require("../assets/icon.png");
 const activities = () => {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+  // const [isLoading, setLoading] = useState(true);
+  // const [data, setData] = useState([]);
   const [token, setToken] = useState("");
   const [organization_id, setOrganization_id] = useState("");
   const [user_id, setUser_id] = useState("");
   const [project_id, setProject_id] = useState("");
 
-  const retrieveData = async () => {
-    try {
-      const value = await AsyncStorage.getItem("data");
-      if (value !== null) {
-        // console.log('Retrieved data:', JSON.parse(value));
-        const data = JSON.parse(value);
-        const token = data.access_token;
-        const organization_id = data.user.organization_id;
-        const user_id = data.user._id;
-        // console.log("token", token);
-        // console.log("organization_id", organization_id);
-        // console.log("user_id", user_id);
-        const info = {
-          token: token,
-          organization_id: organization_id,
-          user_id: user_id,
-        };
-        return info;
-      }
-    } catch (error) {
-      console.log("Error:", error);
-      return null;
-    }
-  };
   let info = retrieveData();
-  console.log("info", info);
-  async function getProjects(token, organization_id) {
-    try {
-      var projectsJson;
-      var aProject;
-      let listOfProjects = [];
+  console.log("info: ", info);
 
-      console.log("getting list of projects..." + organization_id);
-      let url =
-        "http://app.airpmo.co:8000/api/organization/" +
-        organization_id +
-        "/project";
-      let headers = {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
-      };
+  // const MyProjects = getProjects(token, organization_id);
+  // console.log(MyProjects);
+  // // const project_id = "J725";
 
-      let response = await axios.get(url, { headers });
-
-      // console.log("Response:", response.data);
-
-      if (response.status === 200) {
-        console.log("successfully obtained projects....");
-        projectsJson = response.data;
-        for (aProject in projectsJson) {
-          listOfProjects.push(MyProject.fromJson(aProject));
-        }
-        let len = listOfProjects.length;
-        console.log("number of projects = ", len);
-        return listOfProjects;
-      } else {
-        return null;
-      }
-    } catch (error) {
-      console.log("Error:", error);
-      return null;
-    }
-  }
-
-  const MyProjects = getProjects(token, organization_id);
-  console.log(MyProjects);
-  // const project_id = "J725";
-
-  async function getTasks(token, project_id, organization_id) {
-    try {
-      var tasksJson;
-      var aTask;
-      let listOfTasks = [];
-      let url =
-        "http://app.airpmo.co:8000/api/organization/" +
-        organization_id +
-        "/project";
-      let headers = {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
-      };
-      let response = await axios.get(url, { headers });
-      console.log("Response:", response.data);
-      if (response.status === 200) {
-        console.log("successfully obtained tasks....");
-        tasksJson = response.data;
-        for (aTask in tasksJson)
-          if (aTask.project_id == project_id)
-            listOfTasks.push(MyTask.fromJson(aTask));
-        let len = listOfTasks.length;
-        console.log("number of tasks = ", len);
-        return listOfTasks;
-      } else {
-        return null;
-      }
-    } catch (error) {
-      console.log("Error:", error);
-      return null;
-    }
-  }
+  // async function getTasks(token, project_id, organization_id) {
+  //   try {
+  //     var tasksJson;
+  //     var aTask;
+  //     let listOfTasks = [];
+  //     let url =
+  //       "http://app.airpmo.co:8000/api/organization/" +
+  //       organization_id +
+  //       "/project";
+  //     let headers = {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       Authorization: "Bearer " + token,
+  //     };
+  //     let response = await axios.get(url, { headers });
+  //     console.log("Response:", response.data);
+  //     if (response.status === 200) {
+  //       console.log("successfully obtained tasks....");
+  //       tasksJson = response.data;
+  //       for (aTask in tasksJson)
+  //         if (aTask.project_id == project_id)
+  //           listOfTasks.push(MyTask.fromJson(aTask));
+  //       let len = listOfTasks.length;
+  //       console.log("number of tasks = ", len);
+  //       return listOfTasks;
+  //     } else {
+  //       return null;
+  //     }
+  //   } catch (error) {
+  //     console.log("Error:", error);
+  //     return null;
+  //   }
+  // }
 
   // const MyTasks = getTasks(token, project_id, organization_id);
-  console.log("MyTasks", MyTasks);
+  // console.log("MyTasks", MyTasks);
 
   const Tasks = [
     {

@@ -45,11 +45,9 @@ const Home = () => {
         router.push("/activities");
       } else {
         console.log("no successful login");
-        ToastAndroid.show("Login Failed", ToastAndroid.SHORT);
       }
     } catch (error) {
       console.error(error);
-      ToastAndroid.show("Login Failed", ToastAndroid.SHORT);
     }
   };
 
