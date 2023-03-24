@@ -1,3 +1,11 @@
+import React, { useState } from "react";
+import { Link, Stack, useRouter } from "expo-router";
+import Toast from "react-native-root-toast";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const Image = require("../assets/th.jpeg");
+import { useEffect } from "react";
+
 import {
   SafeAreaView,
   Text,
