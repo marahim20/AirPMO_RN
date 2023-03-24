@@ -14,8 +14,8 @@ import {
   TouchableOpacity,
   Text,
   ToastAndroid,
+  SafeAreaView,
 } from "react-native";
-import { SafeAreaView } from "react-native-web";
 
 const Home = () => {
   const [username, setUsername] = useState("");
@@ -54,40 +54,34 @@ const Home = () => {
   };
 
   return (
-    <ImageBackground source={Image} style={styles.backgroundImage}>
-      <View style={styles.overlay}>
-        <View style={styles.container}>
-          <Text style={styles.heading}>airpmo</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Username"
-            onChangeText={(text) => setUsername(text)}
-            value={username}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-            secureTextEntry={true}
-          />
-          <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
-        </View>
+    <SafeAreaView style={styles.overlay}>
+      <Stack.Screen options={{ headerShown: false }} />
+      <View style={styles.container}>
+        <Text style={styles.heading}>airpmo</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          onChangeText={(text) => setUsername(text)}
+          value={username}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          onChangeText={(text) => setPassword(text)}
+          value={password}
+          secureTextEntry={true}
+        />
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
       </View>
-    </ImageBackground>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-  },
   overlay: {
-    backgroundColor: "rgba(255,255,255,0.8)",
+    backgroundColor: "#add8e6",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
+import { useState } from "react";
 import React, { Component, useEffect } from "react";
 import { Stack, useSearchParams } from "expo-router";
 import { Icon } from "@rneui/themed";
@@ -100,8 +101,8 @@ const activities = () => {
         "/project";
       let headers = {
         "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Bearer " + token,
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
       };
       let response = await axios.get(url, { headers });
       console.log("Response:", response.data);
