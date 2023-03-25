@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
+
 import { useState } from "react";
 import React, { Component, useEffect } from "react";
 import { Stack, useRouter } from "expo-router";
@@ -189,7 +190,11 @@ const activities = () => {
       {
         <ScrollView showsVerticalScrollIndicator={false}>
           {Tasks.map((task) => (
-            <TouchableOpacity onPress={handleSelect(task.name)}>
+            <TouchableOpacity
+              onPress={() => {
+                handleSelect(task.name);
+              }}
+            >
               <View
                 style={{
                   padding: 20,
@@ -203,9 +208,7 @@ const activities = () => {
                   gap: 10,
                 }}
               >
-                <Text
-                  style={{ fontSize: 15, fontWeight: 500, minimumWidth: 50 }}
-                >
+                <Text style={{ fontSize: 15, fontWeight: 500, width: 70 }}>
                   {task.name}
                 </Text>
                 <Text style={{ fontSize: 15, fontWeight: 500 }}>|</Text>
