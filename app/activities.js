@@ -33,18 +33,21 @@ const activities = () => {
     async function fetcher() {
       info = await retrieveData();
       projects = await getProjects();
-      tasks = await getTasks();
-      jobCard = await getJobCard();
-      console.log("info: ", info);
-      console.log("projects: ", projects);
-      console.log("tasks: ", tasks);
-      console.log("jobCard: ", jobCard);
+      // tasks = await getTasks();
+      // jobCard = await getJobCard();
+      // console.log("info: ", info);
+      // console.log("projects: ", projects);
+      // console.log("tasks: ", tasks);
+      // console.log("jobCard: ", jobCard);
     }
     fetcher();
   }, []);
 
   const handleSelect = async (projectName) => {
+    console.log("projectName: ", projectName);
     await AsyncStorage.setItem("project", projectName);
+    const project = await AsyncStorage.getItem("project");
+    console.log("project: ", project);
     router.push("/addemp");
   };
 
@@ -191,6 +194,7 @@ const activities = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
           {Tasks.map((task) => (
             <TouchableOpacity
+              key={task.id}
               onPress={() => {
                 handleSelect(task.name);
               }}
