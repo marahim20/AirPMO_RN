@@ -7,6 +7,9 @@ import { Icon } from "@rneui/themed";
 import { ArrowRight, Plus } from "react-native-feather";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import AddModal from "./components/addModal";
+import Table from "./employee";
+import Table2 from "./equipment";
+import Table3 from "./allowablevsactual";
 
 const addemp = () => {
   const [loading, setLoading] = useState(true);
@@ -107,7 +110,9 @@ const addemp = () => {
                 </View>
                 <View
                   style={{ backgroundColor: "#000", flex: 1, marginTop: 10 }}
-                ></View>
+                >
+                  <Table />
+                </View>
               </View>
               <View
                 style={{
@@ -142,7 +147,9 @@ const addemp = () => {
                 </View>
                 <View
                   style={{ backgroundColor: "#000", flex: 1, marginTop: 10 }}
-                ></View>
+                >
+                  <Table2 />
+                </View>
               </View>
               <View
                 style={{
@@ -158,7 +165,9 @@ const addemp = () => {
                 </Text>
                 <View
                   style={{ backgroundColor: "#000", flex: 1, marginTop: 10 }}
-                ></View>
+                >
+                  <Table3 />
+                </View>
               </View>
             </View>
           </ScrollView>
