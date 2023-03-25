@@ -13,9 +13,17 @@ import { SelectList } from "react-native-dropdown-select-list";
 
 const addEmployee = () => {
   const router = useRouter();
+  const [numberOfHours, setNumberOfHours] = useState("No. of hours");
+  const [remarks, setRemarks] = useState("Remarks");
 
   const [selectedEmployee, setSelectedEmployee] = useState("Select Employee");
   const handleClick = async () => {
+    const data = {
+      selectedEmployee,
+      numberOfHours,
+      remarks,
+    };
+    await AsyncStorage.setItem("employee", JSON.stringify(data));
     router.push("/addemp");
   };
 
@@ -97,6 +105,8 @@ const addEmployee = () => {
               borderRadius: 5,
               padding: 10,
             }}
+            value={numberOfHours}
+            onChangeText={(text) => setNumberOfHours(text)}
           />
           <TextInput
             placeholder="Remarks"
@@ -106,6 +116,8 @@ const addEmployee = () => {
               borderRadius: 5,
               padding: 10,
             }}
+            value={remarks}
+            onChangeText={(text) => setRemarks(text)}
           />
           <TouchableOpacity
             onPress={() => {

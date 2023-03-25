@@ -6,7 +6,6 @@ import { Stack, useRouter } from "expo-router";
 import { Icon } from "@rneui/themed";
 import { ArrowRight, Plus } from "react-native-feather";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
-import AddModal from "./components/addModal";
 import Table from "./employee";
 import Table2 from "./equipment";
 import Table3 from "./allowablevsactual";

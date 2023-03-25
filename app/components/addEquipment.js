@@ -10,12 +10,21 @@ import { Stack, useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Icon } from "@rneui/themed";
 import { SelectList } from "react-native-dropdown-select-list";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const addEquipment = () => {
   const router = useRouter();
   const [selectedEquipment, setSelectedEquipment] =
     useState("Select Equipment");
+  const [numberOfHours, setNumberOfHours] = useState("No. of hours");
+  const [remarks, setRemarks] = useState("Remarks");
   const handleClick = async () => {
+    const data = {
+      selectedEquipment,
+      numberOfHours,
+      remarks,
+    };
+    await AsyncStorage.setItem("equipment", JSON.stringify(data));
     router.push("/addemp");
   };
 
@@ -97,6 +106,8 @@ const addEquipment = () => {
               borderRadius: 5,
               padding: 10,
             }}
+            value={numberOfHours}
+            onChangeText={(text) => setNumberOfHours(text)}
           />
           <TextInput
             placeholder="Remarks"
@@ -106,6 +117,8 @@ const addEquipment = () => {
               borderRadius: 5,
               padding: 10,
             }}
+            value={remarks}
+            onChangeText={(text) => setRemarks(text)}
           />
           <TouchableOpacity
             onPress={() => {
