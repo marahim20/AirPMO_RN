@@ -43,9 +43,10 @@ const activities = () => {
     fetcher();
   }, []);
 
-  const handleSelect = async (projectName) => {
-    console.log("projectName: ", projectName);
-    await AsyncStorage.setItem("project", projectName);
+  const handleSelect = async (task) => {
+    console.log("project: ", task);
+    //   console.log(typeof task);
+    await AsyncStorage.setItem("project", task);
     const project = await AsyncStorage.getItem("project");
     console.log("project: ", project);
     router.push("/addemp");
