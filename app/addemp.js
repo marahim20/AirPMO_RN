@@ -6,15 +6,18 @@ import { Stack } from "expo-router";
 
 const addemp = () => {
   const [loading, setLoading] = useState(true);
-  let projectName;
+  const [projectName, setProjectName] = useState(null);
+
   useEffect(() => {
     async function fetcher() {
-      projectName = await AsyncStorage.getItem("project");
+      const projectName = await AsyncStorage.getItem("project");
       console.log("projectName: ", projectName);
+      setProjectName(projectName);
       setLoading(false);
     }
     fetcher();
   }, []);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Stack.Screen />
