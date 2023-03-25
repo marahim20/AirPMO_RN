@@ -11,42 +11,42 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Icon } from "@rneui/themed";
 import { SelectList } from "react-native-dropdown-select-list";
 
-const addEmployee = () => {
+const addEquipment = () => {
   const router = useRouter();
-
-  const [selectedEmployee, setSelectedEmployee] = useState("Select Employee");
+  const [selectedEquipment, setSelectedEquipment] =
+    useState("Select Equipment");
   const handleClick = async () => {
     router.push("/addemp");
   };
 
-  const employees = [
-    { label: "Employee 1", value: "Employee 1" },
-    { label: "Employee 2", value: "Employee 2" },
-    { label: "Employee 3", value: "Employee 3" },
-    { label: "Employee 4", value: "Employee 4" },
-    { label: "Employee 5", value: "Employee 5" },
-    { label: "Employee 6", value: "Employee 6" },
-    { label: "Employee 7", value: "Employee 7" },
-    { label: "Employee 8", value: "Employee 8" },
-    { label: "Employee 9", value: "Employee 9" },
+  const Equipments = [
+    { label: "Equipment 1", value: "Equipment 1" },
+    { label: "Equipment 2", value: "Equipment 2" },
+    { label: "Equipment 3", value: "Equipment 3" },
+    { label: "Equipment 4", value: "Equipment 4" },
+    { label: "Equipment 5", value: "Equipment 5" },
+    { label: "Equipment 6", value: "Equipment 6" },
+    { label: "Equipment 7", value: "Equipment 7" },
+    { label: "Equipment 8", value: "Equipment 8" },
+    { label: "Equipment 9", value: "Equipment 9" },
 
-    { label: "Employee 10", value: "Employee 10" },
-    { label: "Employee 11", value: "Employee 11" },
-    { label: "Employee 12", value: "Employee 12" },
-    { label: "Employee 13", value: "Employee 13" },
-    { label: "Employee 14", value: "Employee 14" },
-    { label: "Employee 15", value: "Employee 15" },
-    { label: "Employee 16", value: "Employee 16" },
-    { label: "Employee 17", value: "Employee 17" },
-    { label: "Employee 18", value: "Employee 18" },
-    { label: "Employee 19", value: "Employee 19" },
+    { label: "Equipment 10", value: "Equipment 10" },
+    { label: "Equipment 11", value: "Equipment 11" },
+    { label: "Equipment 12", value: "Equipment 12" },
+    { label: "Equipment 13", value: "Equipment 13" },
+    { label: "Equipment 14", value: "Equipment 14" },
+    { label: "Equipment 15", value: "Equipment 15" },
+    { label: "Equipment 16", value: "Equipment 16" },
+    { label: "Equipment 17", value: "Equipment 17" },
+    { label: "Equipment 18", value: "Equipment 18" },
+    { label: "Equipment 19", value: "Equipment 19" },
   ];
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#808080" }}>
       <Stack.Screen
         options={{
-          headerTitle: "Add Employee Details",
+          headerTitle: "Add Equipment Details",
           headerTitleStyle: {
             color: "#fff",
             fontSize: 16,
@@ -81,11 +81,11 @@ const addEmployee = () => {
           }}
         >
           <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-            Select Employee
+            Select Equipment
           </Text>
           <SelectList
-            data={employees}
-            setSelected={(val) => setSelectedEmployee(val)}
+            data={Equipments}
+            setSelected={(val) => setSelectedEquipment(val)}
             save="value"
             maxHeight="100"
           />
@@ -135,4 +135,4 @@ const addEmployee = () => {
   );
 };
 
-export default addEmployee;
+export default addEquipment;
