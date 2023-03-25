@@ -211,7 +211,11 @@ const activities = () => {
                 <Text style={{ fontSize: 15, fontWeight: 500, width: 70 }}>
                   {task.name}
                 </Text>
-                <Text style={{ fontSize: 15, fontWeight: 500 }}>|</Text>
+                <Text
+                  style={{ fontSize: 15, fontWeight: 500, color: "#808080" }}
+                >
+                  |
+                </Text>
                 <Text
                   style={{
                     fontSize: 15,

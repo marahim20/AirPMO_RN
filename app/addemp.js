@@ -1,14 +1,19 @@
-import { Text, View } from "react-native";
-import React, { Component } from "react";
+import { useEffect } from "react";
+import { View } from "react-native-web";
 
-export class addemp extends Component {
-  render() {
-    return (
-      <View>
-        <Text>addemp</Text>
-      </View>
-    );
-  }
-}
+const addemp = () => {
+  let projectName;
+  useEffect(() => {
+    async function fetcher() {
+      projectName = await AsyncStorage.getItem("project");
+    }
+    fetcher();
+  }, []);
+  return (
+    <View>
+      <Text>{projectName}</Text>
+    </View>
+  );
+};
 
 export default addemp;
