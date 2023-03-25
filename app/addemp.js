@@ -139,7 +139,9 @@ const addemp = () => {
                       padding: 3,
                       borderRadius: 5,
                     }}
-                    onPress={() => {}}
+                    onPress={() => {
+                      router.push("/components/addEquipment");
+                    }}
                   >
                     <Plus stroke="white" strokeWidth="2" />
                   </TouchableOpacity>

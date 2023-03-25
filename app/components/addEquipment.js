@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import React, { Component, useState } from "react";
 import { Stack, useRouter } from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Icon } from "@rneui/themed";
 import { SelectList } from "react-native-dropdown-select-list";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -29,26 +28,29 @@ const addEquipment = () => {
   };
 
   const Equipments = [
-    { label: "Equipment 1", value: "Equipment 1" },
-    { label: "Equipment 2", value: "Equipment 2" },
-    { label: "Equipment 3", value: "Equipment 3" },
-    { label: "Equipment 4", value: "Equipment 4" },
-    { label: "Equipment 5", value: "Equipment 5" },
-    { label: "Equipment 6", value: "Equipment 6" },
-    { label: "Equipment 7", value: "Equipment 7" },
-    { label: "Equipment 8", value: "Equipment 8" },
-    { label: "Equipment 9", value: "Equipment 9" },
+    { label: "Dump truck", value: "Dump truck" },
+    { label: "Skid steer loader", value: "Skid steer loader" },
+    { label: "Backhoe loader", value: "Backhoe loader" },
+    { label: "Crane", value: "Crane" },
+    { label: "Bulldozer", value: "Bulldozer" },
+    { label: "Concrete mixer truck", value: "Concrete mixer truck" },
+    { label: "", value: "Concrete mixer truck" },
+    { label: "Paver", value: "Paver" },
+    { label: "Road roller", value: "Road roller" },
+    { label: "Tower crane", value: "Tower crane" },
+    { label: "Excavator", value: "Excavator" },
+    { label: "Grader", value: "Grader" },
 
-    { label: "Equipment 10", value: "Equipment 10" },
-    { label: "Equipment 11", value: "Equipment 11" },
-    { label: "Equipment 12", value: "Equipment 12" },
-    { label: "Equipment 13", value: "Equipment 13" },
-    { label: "Equipment 14", value: "Equipment 14" },
-    { label: "Equipment 15", value: "Equipment 15" },
-    { label: "Equipment 16", value: "Equipment 16" },
-    { label: "Equipment 17", value: "Equipment 17" },
-    { label: "Equipment 18", value: "Equipment 18" },
-    { label: "Equipment 19", value: "Equipment 19" },
+    { label: "Wheel loader", value: "Wheel loader" },
+    // { label: "Equipment 11", value: "Equipment 11" },
+    // { label: "Equipment 12", value: "Equipment 12" },
+    // { label: "Equipment 13", value: "Equipment 13" },
+    // { label: "Equipment 14", value: "Equipment 14" },
+    // { label: "Equipment 15", value: "Equipment 15" },
+    // { label: "Equipment 16", value: "Equipment 16" },
+    // { label: "Equipment 17", value: "Equipment 17" },
+    // { label: "Equipment 18", value: "Equipment 18" },
+    // { label: "Equipment 19", value: "Equipment 19" },
   ];
 
   return (

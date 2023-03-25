@@ -5,7 +5,6 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-
 import { useState } from "react";
 import React, { Component, useEffect } from "react";
 import { Stack, useRouter } from "expo-router";
@@ -172,6 +171,14 @@ const activities = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 marginRight: 20,
+              }}
+              onPress={async () => {
+                try {
+                  await AsyncStorage.clear();
+                  router.push("/home");
+                } catch (e) {
+                  console.log("error: ", e);
+                }
               }}
             >
               <Icon name="person" size={24} color="#006a4e" />
