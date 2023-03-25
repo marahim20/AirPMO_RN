@@ -67,43 +67,43 @@ const activities = () => {
     {
       id: 5,
       name: "CD2-1014",
-      description: "CONCRETE PROTECTIONS",
+      description: "Concrete Protections",
     },
 
     {
       id: 6,
       name: "CD2-1015",
-      description: "BACK FILLING & GRADING",
+      description: "Back Filling and Grading",
     },
 
     {
       id: 7,
       name: "CD2-1016",
-      description: "PCC WORK",
+      description: "PCC Work",
     },
 
     {
       id: 8,
       name: "CD2-1017",
-      description: "	FORM WORK FOR FOOTING",
+      description: "Form Work for Footing",
     },
 
     {
       id: 9,
       name: "CD2-1018",
-      description: "REBAR FIXING FOR FOOTING",
+      description: "Rebar work for Footing",
     },
 
     {
       id: 10,
       name: "CD2-1019",
-      description: "CASTING OF FOOTING",
+      description: "Casting of Footing",
     },
 
     {
       id: 11,
       name: "CD2-1020",
-      description: "REBAR FIXING OF PEDESTAL",
+      description: "Rebar fixing for Pedestal",
     },
     {
       id: 12,
@@ -113,7 +113,7 @@ const activities = () => {
     {
       id: 13,
       name: "CD2-1022",
-      description: "	CASTING OF PEDESTAL",
+      description: "CASTING OF PEDESTAL",
     },
 
     {
@@ -180,7 +180,7 @@ const activities = () => {
         </Text>
       </View>
       {
-        <ScrollView showsVerticalScrollIndicator={false} style={{ gap: 10 }}>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {Tasks.map((task) => (
             <View
               style={{
@@ -188,13 +188,24 @@ const activities = () => {
                 display: "flex",
                 backgroundColor: "#f2f2f2",
                 borderRadius: 10,
-                margin: 20,
                 flexDirection: "row",
+                margin: 4,
+                marginLeft: 10,
+                marginRight: 10,
                 gap: 10,
               }}
             >
-              <Text style={{ fontSize: 15, fontWeight: 500 }}>{task.name}</Text>
-              <Text style={{ fontSize: 15, fontWeight: 500 }}>
+              <Text style={{ fontSize: 15, fontWeight: 500, minimumWidth: 50 }}>
+                {task.name}
+              </Text>
+              <Text style={{ fontSize: 15, fontWeight: 500 }}>|</Text>
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: 500,
+                  textTransform: "uppercase",
+                }}
+              >
                 {task.description}
               </Text>
             </View>
