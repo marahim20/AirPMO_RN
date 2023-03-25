@@ -4,8 +4,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useRouter } from "expo-router";
 import { Icon } from "@rneui/themed";
-import { Plus } from "react-native-feather";
+import { ArrowRight, Plus } from "react-native-feather";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import AddModal from "./components/addModal";
 
 const addemp = () => {
   const [loading, setLoading] = useState(true);
@@ -72,6 +73,7 @@ const addemp = () => {
               height: "80%",
               backgroundColor: "#f0f0f0",
             }}
+            showsVerticalScrollIndicator={false}
           >
             <View>
               <View
@@ -98,7 +100,7 @@ const addemp = () => {
                       padding: 3,
                       borderRadius: 5,
                     }}
-                    onPress={() => {}}
+                    onPress={() => router.push("/components/addEmployee")}
                   >
                     <Plus stroke="white" strokeWidth="2" />
                   </TouchableOpacity>
@@ -168,11 +170,43 @@ const addemp = () => {
               justifyContent: "center",
               // alignItems: "center",
               padding: 10,
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
-            <Text style={{ color: "white", fontSize: 16 }}>
-              Quantity Acheived:{" "}
-            </Text>
+            <View style={{ display: "flex", flexDirection: "row" }}>
+              <Text style={{ color: "white", fontSize: 16 }}>
+                Quantity Acheived:{" "}
+              </Text>
+              <TextInput
+                style={{
+                  color: "black",
+                  fontSize: 16,
+                  width: 30,
+                  borderBottom: "1px solid white",
+                }}
+              />
+              <Text style={{ color: "white", fontSize: 16 }}> / 100</Text>
+            </View>
+            <TouchableOpacity
+              style={{
+                padding: 5,
+                backgroundColor: "#808080",
+                borderRadius: 10,
+              }}
+              onPress={() => {
+                router.push("/activities");
+              }}
+            >
+              <ArrowRight
+                stroke="white"
+                strokeWidth="2"
+                width="40"
+                height="30"
+              />
+            </TouchableOpacity>
           </View>
         </View>
       )}
