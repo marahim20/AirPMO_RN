@@ -7,14 +7,16 @@ import {
 } from "react-native";
 import { useState } from "react";
 import React, { Component, useEffect } from "react";
-import { Stack, useSearchParams } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { Icon } from "@rneui/themed";
 import retrieveData from "../libs/retrieveData.js";
 import getProjects from "../libs/getProjects.js";
 import getTasks from "../libs/getTasks.js";
 import getJobCard from "../libs/getJobCard.js";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const activities = () => {
+  const router = useRouter();
   // const [isLoading, setLoading] = useState(true);
   // const [data, setData] = useState([]);
   const [token, setToken] = useState("");
@@ -39,6 +41,11 @@ const activities = () => {
     }
     fetcher();
   }, []);
+
+  const handleSelect = async (projectName) => {
+    await AsyncStorage.setItem("project", projectName);
+    router.push("/addemp");
+  };
 
   // let tasks = getTasks(token, project_id, organization_id);
   // console.log("tasks: ", tasks);
@@ -182,33 +189,37 @@ const activities = () => {
       {
         <ScrollView showsVerticalScrollIndicator={false}>
           {Tasks.map((task) => (
-            <View
-              style={{
-                padding: 20,
-                display: "flex",
-                backgroundColor: "#f2f2f2",
-                borderRadius: 10,
-                flexDirection: "row",
-                margin: 4,
-                marginLeft: 10,
-                marginRight: 10,
-                gap: 10,
-              }}
-            >
-              <Text style={{ fontSize: 15, fontWeight: 500, minimumWidth: 50 }}>
-                {task.name}
-              </Text>
-              <Text style={{ fontSize: 15, fontWeight: 500 }}>|</Text>
-              <Text
+            <TouchableOpacity onPress={handleSelect(task.name)}>
+              <View
                 style={{
-                  fontSize: 15,
-                  fontWeight: 500,
-                  textTransform: "uppercase",
+                  padding: 20,
+                  display: "flex",
+                  backgroundColor: "#f2f2f2",
+                  borderRadius: 10,
+                  flexDirection: "row",
+                  margin: 4,
+                  marginLeft: 10,
+                  marginRight: 10,
+                  gap: 10,
                 }}
               >
-                {task.description}
-              </Text>
-            </View>
+                <Text
+                  style={{ fontSize: 15, fontWeight: 500, minimumWidth: 50 }}
+                >
+                  {task.name}
+                </Text>
+                <Text style={{ fontSize: 15, fontWeight: 500 }}>|</Text>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    fontWeight: 500,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {task.description}
+                </Text>
+              </View>
+            </TouchableOpacity>
           ))}
         </ScrollView>
       }
