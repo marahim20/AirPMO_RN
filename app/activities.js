@@ -44,7 +44,7 @@ const activities = () => {
   }, []);
 
   const handleSelect = async (task) => {
-    console.log("project: ", task);
+    console.log("taskname: ", task);
     //   console.log(typeof task);
     await AsyncStorage.setItem("project", task);
     const project = await AsyncStorage.getItem("project");
@@ -197,7 +197,7 @@ const activities = () => {
             <TouchableOpacity
               key={task.id}
               onPress={() => {
-                handleSelect(task.name);
+                handleSelect(task.description);
               }}
             >
               <View
