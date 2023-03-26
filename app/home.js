@@ -42,6 +42,8 @@ const Home = () => {
         console.log("Successful login");
         await AsyncStorage.setItem("data", JSON.stringify(json));
         console.log(await AsyncStorage.getItem("data"));
+        setUsername("");
+        setPassword("");
         router.push("/activities");
       } else {
         console.log("no successful login");
