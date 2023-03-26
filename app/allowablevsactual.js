@@ -177,16 +177,16 @@ const Table3 = () => {
           contentContainerStyle={styles.contentContainer}
           ListHeaderComponent={() => (
             <View style={styles.header}>
-              <Text style={styles.headerText}>slno</Text>
-              <Text style={styles.headerText}>p_resources</Text>
-              <Text style={styles.headerText}>p_total_hours</Text>
+              <Text style={styles.headerText}>Sl No</Text>
+              <Text style={styles.headerText}>P Resources</Text>
+              <Text style={styles.headerText}>P Total Hours</Text>
               <Text style={styles.headerText}>Designation</Text>
-              <Text style={styles.headerText}>allowable_resources</Text>
-              <Text style={styles.headerText}>allowable_total_hours</Text>
-              <Text style={styles.headerText}>actual_total_hours</Text>
-              <Text style={styles.headerText}>actual_total_cost</Text>
-              <Text style={styles.headerText}>spi</Text>
-              <Text style={styles.headerText}>cpi</Text>
+              <Text style={styles.headerText}>Allowable Resources</Text>
+              <Text style={styles.headerText}>Allowable Total Hours</Text>
+              <Text style={styles.headerText}>Actual Total Hours</Text>
+              <Text style={styles.headerText}>Actual Total Cost</Text>
+              <Text style={styles.headerText}>Spi</Text>
+              <Text style={styles.headerText}>Cpi</Text>
             </View>
           )}
         />

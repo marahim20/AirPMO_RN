@@ -186,13 +186,13 @@ const addemp = () => {
               alignItems: "center",
             }}
           >
-            <View style={{ display: "flex", flexDirection: "row" }}>
+            <View style={{ display: "flex", flexDirection: "row", gap: 10 }}>
               <Text style={{ color: "white", fontSize: 16 }}>
                 Quantity Acheived:{" "}
               </Text>
               <TextInput
                 style={{
-                  color: "black",
+                  color: "white",
                   fontSize: 16,
                   width: 30,
                   borderBottom: "1px solid white",

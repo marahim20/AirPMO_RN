@@ -28,17 +28,17 @@ const addEmployee = () => {
   };
 
   const employees = [
-    { label: "San Joe", value: "San Joe" },
-    { label: "John", value: "John" },
-    { label: "Samuel", value: "Samuel" },
-    { label: "Johan", value: "Johan" },
-    { label: "Ahmed", value: "Ahmed" },
-    { label: "Karim", value: "karim" },
-    { label: "Khaled", value: "Khaled" },
-    { label: "Bilal", value: "Bilal" },
-    { label: "Zaid", value: "Zaid" },
+    {
+      label: "NOOR RAHMAN MOHAMMAD MASOOD",
+      value: "NOOR RAHMAN MOHAMMAD MASOOD",
+    },
+    { label: "ADEBOYE IGE", value: "ADEBOYE IGE" },
+    { label: "ANEESH KUMAR", value: "ANEESH KUMAR" },
+    { label: "INDRA KUMAR", value: "INDRA KUMAR" },
+    { label: "JAGJIT SINGH", value: "JAGJIT SINGH" },
+    { label: "MOHAMMAD IQBAL", value: "MOHAMMAD IQBAL" },
 
-    { label: "Malik", value: "Malik" },
+    { label: "SAQIB HUSSAIN", value: "SAQIB HUSSAIN" },
     // { label: "Employee 11", value: "Employee 11" },
     // { label: "Employee 12", value: "Employee 12" },
     // { label: "Employee 13", value: "Employee 13" },
@@ -80,7 +80,7 @@ const addEmployee = () => {
             display: "flex",
             // alignItems: "center",
             justifyContent: "center",
-            height: "50%",
+            // height: "50%",
             width: "80%",
             backgroundColor: "lightgrey",
             borderRadius: 10,
@@ -105,7 +105,7 @@ const addEmployee = () => {
               borderRadius: 5,
               padding: 10,
             }}
-            value={numberOfHours}
+            // value={numberOfHours}
             onChangeText={(text) => setNumberOfHours(text)}
           />
           <TextInput

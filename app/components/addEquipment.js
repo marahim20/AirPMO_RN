@@ -28,20 +28,16 @@ const addEquipment = () => {
   };
 
   const Equipments = [
-    { label: "Dump truck", value: "Dump truck" },
-    { label: "Skid steer loader", value: "Skid steer loader" },
-    { label: "Backhoe loader", value: "Backhoe loader" },
-    { label: "Crane", value: "Crane" },
-    { label: "Bulldozer", value: "Bulldozer" },
-    { label: "Concrete mixer truck", value: "Concrete mixer truck" },
-    { label: "", value: "Concrete mixer truck" },
-    { label: "Paver", value: "Paver" },
-    { label: "Road roller", value: "Road roller" },
-    { label: "Tower crane", value: "Tower crane" },
-    { label: "Excavator", value: "Excavator" },
-    { label: "Grader", value: "Grader" },
-
-    { label: "Wheel loader", value: "Wheel loader" },
+    { label: "Komatsu PC400 Bi", value: "Komatsu PC400 Bi" },
+    { label: "Cat 12M", value: "Cat 12M" },
+    { label: "Cat 140M", value: "Cat 140M" },
+    { label: "Volvo FH16", value: "Volvo FH16" },
+    { label: "Cat 800H", value: "Cat 800H" },
+    { label: "Fujitsu 6353H", value: "Fujitsu 6353H" },
+    { label: "Volvo FH12 T", value: "Volvo FH12 T" },
+    { label: "Fujitsu 3112F", value: "Fujitsu 3112F" },
+    { label: "JCB BH800", value: "JCB BH800" },
+    { label: "Tata B1210", value: "Tata B1210" },
     // { label: "Equipment 11", value: "Equipment 11" },
     // { label: "Equipment 12", value: "Equipment 12" },
     // { label: "Equipment 13", value: "Equipment 13" },
@@ -83,7 +79,7 @@ const addEquipment = () => {
             display: "flex",
             // alignItems: "center",
             justifyContent: "center",
-            height: "50%",
+            // height: "50%",
             width: "80%",
             backgroundColor: "lightgrey",
             borderRadius: 10,
@@ -108,7 +104,7 @@ const addEquipment = () => {
               borderRadius: 5,
               padding: 10,
             }}
-            value={numberOfHours}
+            // value={numberOfHours}
             onChangeText={(text) => setNumberOfHours(text)}
           />
           <TextInput
